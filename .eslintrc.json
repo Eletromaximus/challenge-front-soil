@@ -5,7 +5,7 @@
         "node": true
     },
     "extends": [
-        "plugin:react/recommended",
+        "plugin:@next/next/recommended",
         "standard"
     ],
     "parser": "@typescript-eslint/parser",
@@ -22,5 +22,10 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }
