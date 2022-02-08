@@ -1,10 +1,10 @@
-import { NavStyle } from './styles'
+import { LogoStyle, NavStyle } from './styles'
 import Image from 'next/image'
 
 export default function NavBar () {
   return (
     <NavStyle>
-      <div className='logo'>
+      <LogoStyle>
         <Image
           src='/haltere.png'
           alt="logo"
@@ -12,8 +12,12 @@ export default function NavBar () {
           height='64px'
           layout='fixed'
         />
-      </div>
-      Projeto Shape
+      </LogoStyle>
+      <p>
+        <h2>
+          Projeto Shape
+        </h2>
+      </p>
     </NavStyle>
   )
 }
