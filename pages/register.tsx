@@ -1,10 +1,10 @@
-import LoginPage from '../src/components/screens/LoginPage'
+import RegisterPage from '../src/components/screens/RegisterPage'
 import WebPageWrapper from '../src/components/wrappers/WebPageWrapper'
 
-export default function Home () {
+export default function Register () {
   return (
     <WebPageWrapper>
-      <LoginPage />
+      <RegisterPage />
     </WebPageWrapper>
   )
 }

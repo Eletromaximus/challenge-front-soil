@@ -1,5 +1,6 @@
 import { LogoStyle, NavStyle } from './styles'
 import Image from 'next/image'
+import Link from '../Link'
 
 export default function NavBar () {
   return (
@@ -10,14 +11,17 @@ export default function NavBar () {
           alt="logo"
           width='64px'
           height='64px'
-          layout='fixed'
+          layout='intrinsic'
         />
       </LogoStyle>
-      <p>
+
+      <Link
+        href='/'
+      >
         <h2>
           Projeto Shape
         </h2>
-      </p>
+      </Link>
     </NavStyle>
   )
 }

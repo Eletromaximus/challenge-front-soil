@@ -1,4 +1,4 @@
-import Button from '../../Button'
+import Link from '../../Link'
 import { LoginPageStyle, LoginContainer } from './styles'
 
 export default function LoginPage () {
@@ -19,13 +19,14 @@ export default function LoginPage () {
         <h3>Entre agora agora e controle sua alimentação!</h3>
         <h4>Para que ela não controle você</h4>
 
-        <Button
+        <Link
           backgroundColor='#109648'
           padding='10px'
           borderRadius='5px'
+          href='/register'
         >
           Cadastre-se
-        </Button>
+        </Link>
       </LoginContainer>
     </LoginPageStyle>
   )
