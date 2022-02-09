@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const LoginPageStyle = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: #584D3D;
@@ -12,4 +15,37 @@ export const LoginPageStyle = styled.main`
     url('/pexels-alesia-kozik-8154260.jpg');
   background-repeat: no-repeat;
   background-position: center;
+
+  h2 + h2,
+  h3 {
+    margin: 5px;
+  }
+`
+export const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 500px;
+  height: 500px;
+  border-radius: 10%;
+
+  background-color: #584D3D;
+  color: #FFFFFF;
+
+  input {
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 80%;
+  }
+
+  label {
+    margin-top: 10px;
+  }
+
+  hr {
+    margin-top: 50px;
+    border-top: 1px solid white;
+    width: 80%;
+  }
 `

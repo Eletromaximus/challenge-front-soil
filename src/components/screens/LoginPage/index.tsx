@@ -1,9 +1,32 @@
-import { LoginPageStyle } from './styles'
+import Button from '../../Button'
+import { LoginPageStyle, LoginContainer } from './styles'
 
 export default function LoginPage () {
   return (
     <LoginPageStyle>
-      Olá
+      <LoginContainer>
+        <h2>Faça o seu Login!</h2>
+
+        <label>Nome</label>
+        <input type='text' id='name'/>
+
+        <label>Senha</label>
+        <input type='text' id='senha'/>
+
+        <hr />
+
+        <h2>Não está cadastrado?</h2>
+        <h3>Entre agora agora e controle sua alimentação!</h3>
+        <h4>Para que ela não controle você</h4>
+
+        <Button
+          backgroundColor='#109648'
+          padding='10px'
+          borderRadius='5px'
+        >
+          Cadastre-se
+        </Button>
+      </LoginContainer>
     </LoginPageStyle>
   )
 }
