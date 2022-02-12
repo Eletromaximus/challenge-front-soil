@@ -1,10 +1,10 @@
 import ListPage from '../src/components/screens/ListPage'
-import WebPageWrapper from '../src/components/wrappers/WebPageWrapper'
+import HOC from '../src/components/wrappers/hoc'
 
 export default function Lists () {
   return (
-    <WebPageWrapper>
+    <HOC>
       <ListPage />
-    </WebPageWrapper>
+    </HOC>
   )
 }

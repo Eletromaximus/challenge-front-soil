@@ -4,7 +4,7 @@ import NavBar from '../../NavBar'
 import SEO from '../../SEO'
 
 interface IWebPageWrapper {
-  children: ReactNode
+  children: ReactNode,
 }
 
 export default function WebPageWrapper ({
@@ -17,7 +17,9 @@ export default function WebPageWrapper ({
       flexDirection: 'column',
       justifyContent: 'space-between',
       height: '100%'
-    }}>
+    }}
+
+    >
       <SEO />
 
       <NavBar />

@@ -5,8 +5,10 @@ interface IButton {
   color?: string,
   padding?: string,
   margin?: string,
-  backgroundColor?: string,
-  borderRadius?: string
+  backgroundColor?: string
+  borderRadius?: string,
+  type: 'button' | 'submit' | 'reset',
+  border: 'string'
 }
 
 export const ButtonStyle = styled.button<IButton>`
@@ -15,4 +17,7 @@ export const ButtonStyle = styled.button<IButton>`
   ${propToStyle('padding')}
   ${propToStyle('margin')}
   ${propToStyle('borderRadius')}
+  ${propToStyle('border')}
+  ${propToStyle('type')}
+
 `

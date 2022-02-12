@@ -12,6 +12,21 @@ export const CardMeals = styled.div`
   background-color: white;
 `
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   width: 100%;
-  height: 100px;
+  height: 100%;
+
+  background-color: #A13409;
+`
+export const AddItem = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
 `

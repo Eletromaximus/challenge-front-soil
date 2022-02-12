@@ -8,7 +8,8 @@ interface IButton {
   margin?: string,
   backgroundColor?: string
   borderRadius?: string,
-  type?: string
+  type: 'button' | 'submit' | 'reset',
+  border: 'string'
 }
 
 export default function Button ({ children, ...props }: IButton) {
@@ -17,4 +18,9 @@ export default function Button ({ children, ...props }: IButton) {
       {children}
     </ButtonStyle>
   )
+}
+
+Button.defaultProps = {
+  type: 'transparent',
+  border: 'none'
 }

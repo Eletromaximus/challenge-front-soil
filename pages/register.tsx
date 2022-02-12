@@ -1,10 +1,10 @@
 import RegisterPage from '../src/components/screens/RegisterPage'
-import WebPageWrapper from '../src/components/wrappers/WebPageWrapper'
+import HOC from '../src/components/wrappers/hoc'
 
 export default function Register () {
   return (
-    <WebPageWrapper>
+    <HOC>
       <RegisterPage />
-    </WebPageWrapper>
+    </HOC>
   )
 }
