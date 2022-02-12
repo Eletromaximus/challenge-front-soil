@@ -21,13 +21,13 @@ export const LoginPageStyle = styled.main`
     margin: 5px;
   }
 `
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   width: 500px;
-  height: 500px;
+  height: 550px;
   border-radius: 10%;
 
   background-color: #584D3D;
@@ -44,7 +44,6 @@ export const LoginContainer = styled.div`
   }
 
   hr {
-    margin-top: 50px;
     border-top: 1px solid white;
     width: 80%;
   }

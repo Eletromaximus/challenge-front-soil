@@ -9,7 +9,7 @@ interface IButton {
   borderRadius?: string
 }
 
-export const ButtonStyle = styled.div<IButton>`
+export const ButtonStyle = styled.button<IButton>`
   ${propToStyle('color')}
   ${propToStyle('backgroundColor')}
   ${propToStyle('padding')}
