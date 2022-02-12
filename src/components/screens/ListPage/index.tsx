@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useEffect, useState } from 'react'
 import { api } from '../../../services/api'
 import { AddItem, CardMeals, Container } from './styles'
@@ -8,15 +9,14 @@ export default function () {
   const [listMeals, setListMeals] = useState([])
   const [date, setDate] = useState('')
 
-  
   useEffect(() => {
     apiLoading()
   }, [])
-  
+
   useEffect(() => {
     console.log(date)
   }, [date])
-  
+
   async function apiLoading () {
     setListMeals(
       await api.get('/listmeals')
