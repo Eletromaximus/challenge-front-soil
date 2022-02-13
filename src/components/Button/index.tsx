@@ -9,7 +9,8 @@ interface IButton {
   backgroundColor?: string
   borderRadius?: string,
   type: 'button' | 'submit' | 'reset',
-  border: 'string'
+  border: 'string',
+  onClick?: () => void
 }
 
 export default function Button ({ children, ...props }: IButton) {

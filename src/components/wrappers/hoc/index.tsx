@@ -1,7 +1,6 @@
 import WebPageWrapper from '../WebPageWrapper'
 import { ReactNode } from 'react'
 
-
 interface IHOC {
   children: ReactNode
 }

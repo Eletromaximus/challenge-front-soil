@@ -1,40 +1,78 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { api } from '../../../services/api'
-import { AddItem, CardMeals, Container } from './styles'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
+import { CardMeals, Container } from './styles'
+import DeleteIcon from '@mui/icons-material/Delete'
 import Button from '../../Button'
+import FormItem from '../../FormItem'
+
+interface Inputs {
+  name: string,
+  email: string,
+  data: string,
+  carboidratos: string,
+  vegetais: string,
+  proteinas: string,
+  gramsProteinas: number,
+  gramsVegetais: number,
+  gramsCarboidratos: number,
+  id?: string
+}
 
 export default function () {
-  const [listMeals, setListMeals] = useState([])
-  const [date, setDate] = useState('')
+  const [listMeals, setListMeals] = useState<Inputs[] | undefined>([])
 
-  useEffect(() => {
-    apiLoading()
-  }, [])
-
-  useEffect(() => {
-    console.log(date)
-  }, [date])
-
-  async function apiLoading () {
+  async function apiLoading (
+    email: string = 'maxmillianox@gmail.com',
+    advance?: number,
+    column?: string,
+    direction?: string
+  ) {
     setListMeals(
-      await api.get('/listmeals')
-        .then((data) => {
-          console.log(data)
-          return data
+      await api.post('/listmeals', {
+        email,
+        advance,
+        column,
+        direction
+      })
+        .then((data: any) => {
+          console.log(data.data.length)
+          return data.data
         }).catch((error) => {
           console.log(error)
           return undefined
         })
     )
   }
-  function handleInput (e: React.FormEvent<HTMLInputElement>) {
-    setDate(e.currentTarget.value)
+
+  async function Del (id:string) {
+    await api.delete('/delmeal', {
+      data: {
+        id
+      }
+    })
+      .then(() => {
+        console.log('ok')
+        apiLoading()
+      }).catch(() => {
+        alert('Falha ao deletar')
+      })
   }
-  const onSubmit = (info: React.SyntheticEvent) => {
-    info.preventDefault()
-    console.log(info)
+
+  useEffect(() => {
+    apiLoading()
+  }, [])
+
+  const onSubmit: SubmitHandler<Inputs> = async (dataSubmit: Inputs) => {
+    console.log(dataSubmit)
+    await api.post('/meals', dataSubmit)
+      .then((data) => {
+        console.log(data)
+        apiLoading()
+      }).catch((error) => {
+        alert(`Preencha os dados devidamente ${error.message}`)
+      })
   }
 
   return (
@@ -43,22 +81,25 @@ export default function () {
 
         </nav> */}
 
-        <AddItem onSubmit={onSubmit}>
-          <input
-            type="datetime-local"
-            name="data"
-            id="data"
-            value={date}
-            onChange={(e) => handleInput(e)}
-          />
-          <input type="text" />
-          <Button ><AddCircleIcon /></Button>
-        </AddItem>
+        <FormItem onSubmit={onSubmit} />
 
-        {listMeals && listMeals.map(meal => {
+        {listMeals.length > 0 && listMeals.map((meal) => {
           return <CardMeals key={meal.id}>
-            name: {meal.name}
-            data: {meal.data}
+            <p><b>name: </b>{meal.name}</p>
+
+            <p><b>data: </b> {meal.data}</p>
+
+            <p><b>Carboidratos: </b>{meal.gramsCarboidratos}g</p>
+
+            <p><b>Vegetais: </b>{meal.gramsVegetais}g</p>
+
+            <p><b>Proteina: </b>{meal.gramsProteinas}g</p>
+
+            <Button
+              onClick={() => Del(meal.id)}
+            >
+              <DeleteIcon />
+            </Button>
           </CardMeals>
         })}
       </Container>
