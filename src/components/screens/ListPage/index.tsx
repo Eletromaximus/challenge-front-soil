@@ -1,11 +1,8 @@
-/* eslint-disable no-undef */
-import { useEffect, useState } from 'react'
-import { SubmitHandler } from 'react-hook-form'
-import { api } from '../../../services/api'
-import { CardMeals, Container } from './styles'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { useEffect, useState } from 'react'
+import { api } from '../../../services/api'
 import Button from '../../Button'
-import FormItem from '../../FormItem'
+import { Container, CardMeals } from './styles'
 
 interface Inputs {
   name: string,
@@ -20,7 +17,7 @@ interface Inputs {
   id?: string
 }
 
-export default function () {
+export default function ListPage () {
   const [listMeals, setListMeals] = useState<Inputs[] | []>([])
 
   async function apiLoading (
@@ -46,6 +43,14 @@ export default function () {
     )
   }
 
+  useEffect(() => {
+    try {
+      apiLoading()
+    } catch (error: any) {
+      console.log(error)
+    }
+  }, [])
+
   async function Del (id:string) {
     await api.delete('/delmeal', {
       data: {
@@ -60,52 +65,28 @@ export default function () {
       })
   }
 
-  useEffect(() => {
-    try {
-      apiLoading()
-    } catch (error: any) {
-      console.log(error)
-    }
-  }, [])
-
-  const onSubmit: SubmitHandler<Inputs> = async (dataSubmit: Inputs) => {
-    console.log(dataSubmit)
-    await api.post('/meals', dataSubmit)
-      .then((data) => {
-        console.log(data)
-        apiLoading()
-      }).catch((error) => {
-        alert(`Preencha os dados devidamente ${error.message}`)
-      })
-  }
-
   return (
-      <Container>
-        {/* <nav>
+    <Container>
+      {listMeals && listMeals.length > 0 && listMeals.map((meal) => {
+        return <CardMeals key={meal.id}>
+          <p><b>name: </b>{meal.name}</p>
 
-        </nav> */}
+          <p><b>data: </b> {meal.data}</p>
 
-        <FormItem onSubmit={onSubmit} />
+          <p><b>Carboidratos: </b>{meal.gramsCarboidratos}g</p>
 
-        {listMeals && listMeals.length > 0 && listMeals.map((meal) => {
-          return <CardMeals key={meal.id}>
-            <p><b>name: </b>{meal.name}</p>
+          <p><b>Verduras: </b>{meal.gramsVegetais}g</p>
 
-            <p><b>data: </b> {meal.data}</p>
+          <p><b>Proteina: </b>{meal.gramsProteinas}g</p>
 
-            <p><b>Carboidratos: </b>{meal.gramsCarboidratos}g</p>
+          <Button
+            onClick={() => Del(meal.id)}
+          >
+            <DeleteIcon />
+          </Button>
+        </CardMeals>
+      })}
+    </Container>
 
-            <p><b>Verduras: </b>{meal.gramsVegetais}g</p>
-
-            <p><b>Proteina: </b>{meal.gramsProteinas}g</p>
-
-            <Button
-              onClick={() => Del(meal.id)}
-            >
-              <DeleteIcon />
-            </Button>
-          </CardMeals>
-        })}
-      </Container>
   )
 }
