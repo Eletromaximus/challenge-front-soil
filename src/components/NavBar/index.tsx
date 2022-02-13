@@ -1,4 +1,4 @@
-import { LogoStyle, NavStyle } from './styles'
+import { Links, LogoStyle, NavStyle } from './styles'
 import Image from 'next/image'
 import Link from '../Link'
 
@@ -13,15 +13,37 @@ export default function NavBar () {
           height='64px'
           layout='intrinsic'
         />
+        <Link
+          href='/'
+        >
+          <h2>
+            Projeto Shape
+          </h2>
+        </Link>
       </LogoStyle>
 
-      <Link
-        href='/'
-      >
-        <h2>
-          Projeto Shape
-        </h2>
-      </Link>
+      <Links>
+        <Link
+          href='/scheduling'
+          color='white'
+          padding='10px'
+          backgroundColor='green'
+          margin='0 10px 0 0'
+        >
+          <b>Agendamento</b>
+        </Link>
+
+        <Link
+          href='/lists'
+          color='white'
+          padding='10px'
+          backgroundColor='green'
+          margin='0 10px 0 0'
+        >
+          <b>Listagem</b>
+        </Link>
+      </Links>
+
     </NavStyle>
   )
 }

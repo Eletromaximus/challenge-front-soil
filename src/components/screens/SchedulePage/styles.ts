@@ -9,7 +9,7 @@ export const OptionsBar = styled.nav`
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;

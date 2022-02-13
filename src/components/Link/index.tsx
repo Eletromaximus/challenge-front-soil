@@ -6,6 +6,7 @@ interface ILink {
   children: ReactNode,
   color?: string,
   padding?: string,
+  margin?: string,
   backgroundColor?: string,
   borderRadius?: string,
   href: string

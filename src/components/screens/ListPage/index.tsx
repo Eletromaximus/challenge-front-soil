@@ -68,10 +68,15 @@ export default function ListPage () {
   return (
     <Container>
       {listMeals && listMeals.length > 0 && listMeals.map((meal) => {
-        return <CardMeals key={meal.id}>
-          <p><b>name: </b>{meal.name}</p>
+        const data = new Date(meal.data)
 
-          <p><b>data: </b> {meal.data}</p>
+        return <CardMeals key={meal.id}>
+          <p><b>Nome: </b>{meal.name}</p>
+
+          <p>
+            <b>Data: </b>
+            { Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'numeric', hour: 'numeric', minute: 'numeric' }).format(data)}
+          </p>
 
           <p><b>Carboidratos: </b>{meal.gramsCarboidratos}g</p>
 

@@ -12,6 +12,8 @@ interface IButton {
 }
 
 export const ButtonStyle = styled.button<IButton>`
+  cursor: pointer;
+
   ${propToStyle('color')}
   ${propToStyle('backgroundColor')}
   ${propToStyle('padding')}

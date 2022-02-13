@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import breakpointsMedia from '../../../utils/breakpointsMedia'
 
 export const CardMeals = styled.div`
 width: 250px;
@@ -15,10 +16,23 @@ p {
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  flex-wrap: wrap;
   height: 100%;
-
+  padding: 0 16px;
   background-color: #A13409;
+  
+  ${breakpointsMedia({
+    md: css`
+      max-width: 0 ${(100 * 8) / 12}%
+    `,
+    sm: css`
+      max-width: 0 ${(100 * 10) / 12}%
+    `
+  })}
+
+  b {
+    margin: 0 5px;
+  }
 `

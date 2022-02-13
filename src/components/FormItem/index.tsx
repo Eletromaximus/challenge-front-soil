@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '../Button'
 import { FormItemStyle } from './styles'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
+import { api } from '../../services/api'
 
 interface Inputs {
   name: string,
@@ -16,19 +17,43 @@ interface Inputs {
   id?: string
 }
 
-interface IForm {
-  onSubmit: SubmitHandler<Inputs>
-}
+export default function FormItem () {
+  const defaultValues: Inputs = {
+    name: '',
+    data: '',
+    email: '',
+    carboidratos: '',
+    verduras: '',
+    proteinas: '',
+    gramsCarboidratos: 0,
+    gramsProteinas: 0,
+    gramsVerduras: 0
+  }
 
-export default function FormItem ({ onSubmit }: IForm) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
-  } = useForm<Inputs>()
+  } = useForm<Inputs>({
+    defaultValues
+  })
+
+  const onSubmit: SubmitHandler<Inputs> = async (dataSubmit: Inputs) => {
+    await api.post('/meals', dataSubmit)
+      .then((data) => {
+        console.log(data)
+        alert('Dados preenchidos com sucesso')
+        reset(defaultValues)
+      }).catch((error) => {
+        alert(`Preencha os dados devidamente ${error.message}`)
+      })
+  }
 
   return (
-    <FormItemStyle onSubmit={handleSubmit(onSubmit)}>
+    <FormItemStyle
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <label><b> Agende uma refeição começando pela data:</b></label>
 
       <input
@@ -131,7 +156,10 @@ export default function FormItem ({ onSubmit }: IForm) {
         <p>{'Insira um número vádido'}</p>
       }
 
-      <Button >
+      <Button
+        backgroundColor='transparent'
+        margin='10px 0'
+      >
         <AddCircleIcon />
       </Button>
     </FormItemStyle>

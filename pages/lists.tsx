@@ -1,4 +1,4 @@
-import ListPage from '../src/components/screens/SchedulePage'
+import ListPage from '../src/components/screens/ListPage'
 import HOC from '../src/components/wrappers/hoc'
 
 export default function Lists () {
