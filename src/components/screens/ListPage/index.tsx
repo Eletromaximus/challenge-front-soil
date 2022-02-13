@@ -12,16 +12,16 @@ interface Inputs {
   email: string,
   data: string,
   carboidratos: string,
-  vegetais: string,
+  verduras: string,
   proteinas: string,
   gramsProteinas: number,
-  gramsVegetais: number,
+  gramsVerduras: number,
   gramsCarboidratos: number,
   id?: string
 }
 
 export default function () {
-  const [listMeals, setListMeals] = useState<Inputs[] | undefined>([])
+  const [listMeals, setListMeals] = useState<Inputs[] | []>([])
 
   async function apiLoading (
     email: string = 'maxmillianox@gmail.com',
@@ -61,7 +61,11 @@ export default function () {
   }
 
   useEffect(() => {
-    apiLoading()
+    try {
+      apiLoading()
+    } catch (error: any) {
+      console.log(error)
+    }
   }, [])
 
   const onSubmit: SubmitHandler<Inputs> = async (dataSubmit: Inputs) => {
@@ -83,7 +87,7 @@ export default function () {
 
         <FormItem onSubmit={onSubmit} />
 
-        {listMeals.length > 0 && listMeals.map((meal) => {
+        {listMeals && listMeals.length > 0 && listMeals.map((meal) => {
           return <CardMeals key={meal.id}>
             <p><b>name: </b>{meal.name}</p>
 
@@ -91,7 +95,7 @@ export default function () {
 
             <p><b>Carboidratos: </b>{meal.gramsCarboidratos}g</p>
 
-            <p><b>Vegetais: </b>{meal.gramsVegetais}g</p>
+            <p><b>Verduras: </b>{meal.gramsVegetais}g</p>
 
             <p><b>Proteina: </b>{meal.gramsProteinas}g</p>
 

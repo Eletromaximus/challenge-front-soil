@@ -8,10 +8,10 @@ interface Inputs {
   email: string,
   data: string,
   carboidratos: string,
-  vegetais: string,
+  verduras: string,
   proteinas: string,
   gramsProteinas: number,
-  gramsVegetais: number,
+  gramsVerduras: number,
   gramsCarboidratos: number,
   id?: string
 }
@@ -41,9 +41,16 @@ export default function FormItem ({ onSubmit }: IForm) {
 
       <label>Nome:</label>
 
-      <input
+      <select
         {...register('name', { required: true })}
-      />
+      >
+        <option value="almoço">Almoço</option>
+        <option value="café da manhã">Cafe da manhã</option>
+        <option value="café da tarde">Cafe da tarde</option>
+        <option value="ceia">Ceia</option>
+        <option value="janta">Janta</option>
+      </select>
+
       {errors.name &&
         <p>{'Um nome válido é necessário'}</p>
       }
@@ -62,9 +69,15 @@ export default function FormItem ({ onSubmit }: IForm) {
 
       <label>Carboidratos:</label>
 
-      <input
+      <select
         {...register('carboidratos')}
-      />
+      >
+        <option value="arroz">Arroz</option>
+        <option value="batata">Batata</option>
+        <option value="inhame">Inhame</option>
+        <option value="macarrão">Macarrão</option>
+        <option value="pão">Pão</option>
+      </select>
 
       <label>Gramas de Carboidrato:</label>
 
@@ -76,27 +89,37 @@ export default function FormItem ({ onSubmit }: IForm) {
         <p>{'Insira um número vádido'}</p>
       }
 
-      <label>Vegetais:</label>
+      <label>Verduras:</label>
+
+      <select
+        {...register('verduras')}
+      >
+        <option value="abobrinha">Abobrinha</option>
+        <option value="berinjela">Berinjela</option>
+        <option value="abóbora">Abóbora</option>
+        <option value="almeirão">Almeirão</option>
+      </select>
+
+      <label>Gramas de verduras:</label>
 
       <input
-        {...register('vegetais')}
+        type='number'{...register('gramsVerduras')}
       />
 
-      <label>Gramas de Vegetais:</label>
-
-      <input
-        type='number'{...register('gramsVegetais')}
-      />
-
-      {errors.gramsVegetais &&
+      {errors.gramsVerduras &&
         <p>{'Insira um número vádido'}</p>
       }
 
       <label>Proteinas:</label>
 
-      <input
+      <select
         {...register('proteinas')}
-      />
+      >
+        <option value="peixe">Peixe</option>
+        <option value="boi">Boi</option>
+        <option value="porco">Porco</option>
+        <option value="frango">Frango</option>
+      </select>
 
       <label>Gramas de Proteinas:</label>
 
